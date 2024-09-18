@@ -1,24 +1,26 @@
-import logo from './logo.svg';
 import './App.css';
+//import Demo from './demo/Demo';
+import Comment from './comments/Comment';
+//import React from 'react';
+//La creéation d'un composant React peut se faire de deux façons :
+// 1. Function qui retourne du code JSX (recommended)
+// 2. Class qui contient une méthode render qui retourne du code JSX
+
+/*class App extends React.Component{
+
+  render(){
+    return <h1>Composant généré à partir d'une classe</h1>
+  }
+}*/
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <h1>My first React App</h1>
+      <Comment />
+      <Comment />
+      <Comment />
+    </>
   );
 }
 
