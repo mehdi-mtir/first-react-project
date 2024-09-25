@@ -1,21 +1,22 @@
-function Comment(){
+function Comment({name, avatar, description, pubDate, evaluation}){
+    //console.log(props);
     return(
         <div className="ui comments">
             <div className="comment">
                 <a className="avatar">
-                    <img src="https://semantic-ui.com/images/avatar/small/stevie.jpg" />
+                    <img src={avatar} />
                 </a>
                 <div className="content">
-                <a className="author">Stevie Feliciano</a>
+                <a className="author">{name}</a>
                 <div className="metadata">
-                    <div className="date">2 days ago</div>
+                    <div className="date">{pubDate}</div>
                     <div className="rating">
                     <i className="star icon"></i>
-                    5 Faves
+                    {evaluation} Faves
                     </div>
                 </div>
                 <div className="text">
-                    Hey guys, I hope this example comment is helping you read this documentation.
+                    {description}
                 </div>
                 </div>
             </div>
