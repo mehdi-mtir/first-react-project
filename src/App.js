@@ -26,7 +26,8 @@ function App() {
       avatar :"https://semantic-ui.com/images/avatar/small/matt.jpg",
       pubDate : "25/09/2024",
       description : "How artistic!",
-      evaluation : 4
+      evaluation : 4,
+      etat : "pending" //approuved
     },
     {
       id : 2,
@@ -34,7 +35,8 @@ function App() {
       avatar :"https://semantic-ui.com/images/avatar/small/stevie.jpg",
       pubDate : "24/09/2024",
       description : "Hey guys, I hope this example comment is helping you read this documentation.",
-      evaluation : 5
+      evaluation : 5,
+      etat : "pending" //approuved
     },
     {
       id : 3,
@@ -42,7 +44,8 @@ function App() {
       avatar :"https://semantic-ui.com/images/avatar/small/elliot.jpg",
       pubDate : "23/09/2024",
       description : "This has been very useful for my research. Thanks as well!",
-      evaluation : 4
+      evaluation : 4,
+      etat : "pending" //approuved
     }
   ]);
 
@@ -52,7 +55,23 @@ function App() {
       setComments([...comments, newComment]);
       setAction("");
     }
+
+    const declineComment = (id)=>{
+      if(window.confirm("Êtes-vous sûre de vouloir décliner le commentaire?"))
+        setComments(
+          comments.filter(
+            comment => comment.id !== id 
+          )
+        )
+    }
     
+    const approuveComment = (id)=>{
+      setComments(
+        comments.map(
+          comment=>(comment.id === id)?{...comment, etat : "approuved"}:comment
+        )
+      )
+    }
 
 
   return (
@@ -81,7 +100,12 @@ function App() {
       <div className="ui cards">
       {
         comments.map(
-          comment=><Card key={comment.id}>
+          comment=><Card 
+            key={comment.id} 
+            id={comment.id} 
+            etat={comment.etat} 
+            declineCommentRef = {declineComment}
+            approuveCommentRef = {approuveComment}>
             <Comment  {...comment} />
           </Card>
         )
