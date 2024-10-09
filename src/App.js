@@ -3,6 +3,7 @@ import './App.css';
 import Comment from './comments/Comment';
 import Card from './comments/Card';
 import { useState } from 'react';
+import AddComment from './comments/AddComment';
 //import React from 'react';
 //La creéation d'un composant React peut se faire de deux façons :
 // 1. Function qui retourne du code JSX (recommended)
@@ -45,17 +46,13 @@ function App() {
     }
   ]);
 
-  /*
-  setComments([...comments, {
-            id : 4,
-            name:"Tom",
-            avatar :"https://semantic-ui.com/images/avatar/small/joe.jpg",
-            pubDate : "22/09/2024",
-            description : "This will be great for business reports. I will definitely download this.",
-            evaluation : 5
-            }
-          ])
-  */
+
+    const addNewComment = (newComment)=>{
+      newComment.id = comments[comments.length - 1].id + 1;
+      setComments([...comments, newComment]);
+      setAction("");
+    }
+    
 
 
   return (
@@ -75,36 +72,9 @@ function App() {
       {
       //Début formulaire d'ajout
       (action === "add") &&
-      <div style={{marginBottom : 10}}>
-      <form className="ui form five column stackable grid ">
-        <div className="field column">
-          <label>Nom</label>
-          <input type="text" name="name" placeholder="Nom" />
-        </div>
-        <div className="field column">
-          <label>Avatar</label>
-          <input type="text" name="avatar" placeholder="url de l'avatar" />
-        </div>
-        <div className="field column">
-          <label>Description</label>
-          <input type="text" name="description" placeholder="Texte du commentaire" />
-        </div>
-        <div className="field column">
-          <label>Date de publication</label>
-          <input type="text" name="pubDate" placeholder="jj/mm/aaaa" />
-        </div>
-        <div className="field column">
-          <label>Evaluation</label>
-          <input type="number" name="evaluation" min={1} max={5} />
-        </div>
-        
-        <button 
-          className="ui button primary column" 
-          type="submit"
-          onClick={()=>setAction("")}
-          >Valider</button>
-      </form>
-      </div>
+        <AddComment 
+          addNewCommentRef = {addNewComment}
+        />
 
       }
 
